@@ -40,6 +40,12 @@ jobs:
           token: ${{ secrets.GITHUB_TOKEN }}
           args: --all-features
 
+      - name: install cargo-deb
+        uses: actions-rs/cargo@v1.0.3
+        with:
+          command: install
+          args: cargo-deb
+
       - name: install cargo-license
         uses: actions-rs/cargo@v1.0.3
         with:
@@ -68,6 +74,9 @@ jobs:
           args: --release --target x86_64-pc-windows-gnu
 
       - run: |
+          cargo deb \
+            --target x86_64-unknown-linux-musl
+
           cargo license \
             --authors \
             --do-not-bundle \
@@ -97,6 +106,7 @@ jobs:
             CREDITS.linux.txt
             LICENSE
             README.md
+            target/x86_64-unknown-linux-musl/debian/logrotater_*_amd64.deb
             target/x86_64-pc-windows-gnu/release/logrotater.exe
             target/x86_64-unknown-linux-musl/release/logrotater
 
@@ -109,5 +119,6 @@ jobs:
             CREDITS.linux.txt
             LICENSE
             README.md
+            target/x86_64-unknown-linux-musl/debian/logrotater_*_amd64.deb
             target/x86_64-pc-windows-gnu/release/logrotater
             target/x86_64-unknown-linux-musl/release/logrotater

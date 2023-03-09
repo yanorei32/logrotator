@@ -1,7 +1,13 @@
 [package]
 name = "logrotater"
-version = "0.1.0"
+version = "0.1.1"
 edition = "2021"
+authors = ["yanorei32"]
+description = "A simple logrotater"
+readme = "README.md"
+repository = "https://github.com/yanorei32/logrotater/"
+license = "BSD-2-Clause"
+categories = ["command-line-utilities"]
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
