@@ -1,7 +1,9 @@
 use clap::Parser;
+use std::{
+    num::NonZeroU64,
+    path::{Path, PathBuf},
+};
 use validator::{Validate, ValidationError};
-use std::num::NonZeroU64;
-use std::path::{Path, PathBuf};
 
 #[derive(Debug, Validate, Parser)]
 #[command(author, version, about, long_about = None)]

@@ -1,13 +1,11 @@
 #![warn(clippy::pedantic)]
 
 use clap::Parser;
-use std::borrow::Cow;
-use std::io::prelude::*;
-use std::path::Path;
-use std::time::SystemTime;
-use std::{error::Error, fs::File};
-use tokio::io::AsyncBufReadExt;
-use tokio::time::{self, Duration};
+use std::{borrow::Cow, error::Error, fs::File, io::prelude::*, path::Path, time::SystemTime};
+use tokio::{
+    io::{self, AsyncBufReadExt, BufReader},
+    time::{self, Duration},
+};
 use validator::Validate;
 
 mod model;
@@ -36,8 +34,7 @@ async fn main() {
 
     if let Err(v) = args.validate() {
         for (k, v) in v.field_errors() {
-            let errors: Vec<Cow<'static, str>> =
-                v.iter().map(|v| v.code.clone()).collect();
+            let errors: Vec<Cow<'static, str>> = v.iter().map(|v| v.code.clone()).collect();
             eprintln!("Invalid {k}, reason: {}", errors.join(", "));
         }
 
@@ -46,7 +43,7 @@ async fn main() {
 
     let mut output_file = create_an_file(&args.dir).expect("Failed to create inital file");
     let mut interval = time::interval(Duration::from_secs(args.interval.get()));
-    let mut lines = tokio::io::BufReader::new(tokio::io::stdin()).lines();
+    let mut lines = BufReader::new(io::stdin()).lines();
     let mut line_count = 0;
 
     // drop first tick
