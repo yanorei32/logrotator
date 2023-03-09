@@ -1,7 +1,9 @@
+#![warn(clippy::pedantic)]
+
 use clap::Parser;
 use std::borrow::Cow;
 use std::io::prelude::*;
-use std::path::PathBuf;
+use std::path::Path;
 use std::time::SystemTime;
 use std::{error::Error, fs::File};
 use tokio::io::AsyncBufReadExt;
@@ -10,8 +12,8 @@ use validator::Validate;
 
 mod model;
 
-fn create_an_file(dir: &PathBuf) -> Result<File, Box<dyn Error>> {
-    let mut path = dir.clone();
+fn create_an_file(dir: &Path) -> Result<File, Box<dyn Error>> {
+    let mut path = dir.to_path_buf();
 
     let unixtime = SystemTime::now()
         .duration_since(SystemTime::UNIX_EPOCH)?

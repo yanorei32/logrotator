@@ -1,7 +1,7 @@
 use clap::Parser;
 use validator::{Validate, ValidationError};
 use std::num::NonZeroU64;
-use std::path::PathBuf;
+use std::path::{Path, PathBuf};
 
 #[derive(Debug, Validate, Parser)]
 #[command(author, version, about, long_about = None)]
@@ -17,7 +17,7 @@ pub struct Args {
     pub gzip: bool,
 }
 
-fn validate_dir(dir: &PathBuf) -> Result<(), ValidationError> {
+fn validate_dir(dir: &Path) -> Result<(), ValidationError> {
     if dir.is_dir() {
         Ok(())
     } else {
