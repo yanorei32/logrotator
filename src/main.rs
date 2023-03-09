@@ -59,7 +59,6 @@ async fn main() {
             }
             l = lines.next_line() => {
                 let Some(l) = l.unwrap() else {
-                    eprintln!("EOF received");
                     break;
                 };
 
@@ -70,6 +69,7 @@ async fn main() {
         }
     }
 
+    eprintln!("EOF received");
     eprintln!("Syncing {line_count} lines...");
     output_file.flush().expect("Failed to sync");
 }
