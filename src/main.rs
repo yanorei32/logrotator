@@ -43,7 +43,7 @@ async fn main() {
     }
 
     let mut output_file = create_an_file(&args.dir).expect("Failed to create inital file");
-    let mut interval = time::interval(Duration::from_secs(args.split_interval.get()));
+    let mut interval = time::interval(Duration::from_secs(args.interval.get()));
     let mut lines = tokio::io::BufReader::new(tokio::io::stdin()).lines();
     let mut line_count = 0;
 

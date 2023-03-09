@@ -6,12 +6,12 @@ use std::path::PathBuf;
 #[derive(Debug, Validate, Parser)]
 #[command(author, version, about, long_about = None)]
 pub struct Args {
-    #[arg(long)]
+    #[arg(long, short)]
     #[validate(custom = "validate_dir")]
     pub dir: PathBuf,
 
-    #[arg(long)]
-    pub split_interval: NonZeroU64,
+    #[arg(long, short)]
+    pub interval: NonZeroU64,
 
     #[arg(long)]
     pub gzip: bool,
