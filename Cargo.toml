@@ -13,7 +13,7 @@ categories = ["command-line-utilities"]
 
 [dependencies]
 tokio = { version = "1.26.0", features = ["rt", "macros", "time", "io-std", "io-util"] }
-clap = { version = "4.2.1", features = ["derive"] }
+clap = { version = "4.2.2", features = ["derive"] }
 validator = { version = "0.16.0", features = ["derive"] }
 
 [profile.release]
