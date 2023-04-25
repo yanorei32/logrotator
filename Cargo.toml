@@ -12,7 +12,7 @@ categories = ["command-line-utilities"]
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
-tokio = { version = "1.27.0", features = ["rt", "macros", "time", "io-std", "io-util"] }
+tokio = { version = "1.28.0", features = ["rt", "macros", "time", "io-std", "io-util"] }
 clap = { version = "4.2.4", features = ["derive"] }
 validator = { version = "0.16.0", features = ["derive"] }
 
