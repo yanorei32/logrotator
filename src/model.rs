@@ -9,7 +9,7 @@ use validator::{Validate, ValidationError};
 #[command(author, version, about, long_about = None)]
 pub struct Args {
     #[arg(long, short)]
-    #[validate(custom = "validate_dir")]
+    #[validate(custom(function = "validate_dir"))]
     pub dir: PathBuf,
 
     #[arg(long, short)]
